@@ -6,6 +6,7 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Convertor from "../screens/Convertor";
 import Home from "../screens/Home";
 import Settings from "../screens/Settings";
 import { colors } from "../theme/index";
@@ -19,6 +20,7 @@ const THEME = {
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
+const ConvertorStack = createNativeStackNavigator();
 const settingsStack = createNativeStackNavigator();
 
 function HomeStackScreens() {
@@ -26,6 +28,14 @@ function HomeStackScreens() {
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="Home" component={Home} />
     </HomeStack.Navigator>
+  );
+}
+
+function ConvertorStackScreens() {
+  return (
+    <ConvertorStack.Navigator screenOptions={{ headerShown: false }}>
+      <ConvertorStack.Screen name="Convertor" component={Convertor} />
+    </ConvertorStack.Navigator>
   );
 }
 
@@ -70,6 +80,20 @@ export default function Navigation() {
           }}
           name="HomeTab"
           component={HomeStackScreens}
+        />
+        <Tab.Screen
+          options={{
+            title: "Convertor",
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon
+                fontFamily={"Ionicons"}
+                name="calculator"
+                color={color}
+              />
+            ),
+          }}
+          name="ConvertorTab"
+          component={ConvertorStackScreens}
         />
 
         <Tab.Screen

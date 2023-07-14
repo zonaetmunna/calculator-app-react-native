@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 const Home = () => {
   const [expression, setExpression] = useState("");
   const [result, setResult] = useState("");
@@ -32,8 +40,10 @@ const Home = () => {
       {/* Display */}
       <View style={styles.displayContainer}>
         <Text style={styles.expression}>{expression}</Text>
+        <View style={styles.line} /> {/* Add this line */}
         <Text style={styles.result}>{result}</Text>
       </View>
+
       {/* number */}
       <View style={styles.buttonContainer}>
         <View style={styles.row}>
@@ -170,8 +180,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f2f2",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: windowWidth * 0.05, // 5% of window width
+    paddingVertical: windowHeight * 0.05, // 5% of window height
   },
   displayContainer: {
     flex: 1,
@@ -179,13 +189,14 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     paddingHorizontal: 20,
     paddingBottom: 20,
-    border: 5,
+    borderWidth: 1,
     borderColor: "#000",
-    borderBottomWidth: 0,
+    borderBottomWidth: 1, // Add this line
     borderTopWidth: 0,
     width: "100%",
     backgroundColor: "#dbb6e3",
   },
+
   expression: {
     fontSize: 24,
     marginBottom: 40,
@@ -195,18 +206,22 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 40,
   },
+  line: {
+    height: 1,
+    backgroundColor: "#000",
+    marginVertical: 10,
+  },
   buttonContainer: {
     flex: 1,
     justifyContent: "flex-end",
     paddingHorizontal: 20,
     paddingBottom: 20,
-    border: 5,
-    borderColor: "#000",
-    borderBottomWidth: 0,
-    borderTopWidth: 0,
+    borderTopWidth: 1, // Add this line
+    borderTopColor: "#000", // Add this line
     width: "100%",
     backgroundColor: "#dbb6e3",
   },
+
   row: {
     flexDirection: "row",
     marginBottom: 10,
@@ -230,7 +245,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   buttonEqual: {
-    color: "#fff",
-    backgroundColor: "#ff7f50",
+    // color: "#fff",
+    // backgroundColor: "#ff7f50",
   },
 });
