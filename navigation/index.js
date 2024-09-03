@@ -1,21 +1,17 @@
-import {
-  Ionicons,
-  MaterialCommunityIcons,
-  SimpleLineIcons,
-} from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Convertor from "../screens/Convertor";
-import Home from "../screens/Home";
-import Settings from "../screens/Settings";
-import { colors } from "../theme/index";
+import { Ionicons, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Convertor from '../screens/Convertor';
+import Home from '../screens/Home';
+import Settings from '../screens/Settings';
+import { colors } from '../theme/index';
 const THEME = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: "white",
-  },
+	...DefaultTheme,
+	colors: {
+		...DefaultTheme.colors,
+		background: 'white',
+	},
 };
 
 const Tab = createBottomTabNavigator();
@@ -24,93 +20,80 @@ const ConvertorStack = createNativeStackNavigator();
 const settingsStack = createNativeStackNavigator();
 
 function HomeStackScreens() {
-  return (
-    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name="Home" component={Home} />
-    </HomeStack.Navigator>
-  );
+	return (
+		<HomeStack.Navigator screenOptions={{ headerShown: false }}>
+			<HomeStack.Screen name='Home' component={Home} />
+		</HomeStack.Navigator>
+	);
 }
 
 function ConvertorStackScreens() {
-  return (
-    <ConvertorStack.Navigator screenOptions={{ headerShown: false }}>
-      <ConvertorStack.Screen name="Convertor" component={Convertor} />
-    </ConvertorStack.Navigator>
-  );
+	return (
+		<ConvertorStack.Navigator screenOptions={{ headerShown: false }}>
+			<ConvertorStack.Screen name='Convertor' component={Convertor} />
+		</ConvertorStack.Navigator>
+	);
 }
 
 function settingsStackScreens() {
-  return (
-    <settingsStack.Navigator screenOptions={{ headerShown: false }}>
-      <settingsStack.Screen name="Settings" component={Settings} />
-    </settingsStack.Navigator>
-  );
+	return (
+		<settingsStack.Navigator screenOptions={{ headerShown: false }}>
+			<settingsStack.Screen name='Settings' component={Settings} />
+		</settingsStack.Navigator>
+	);
 }
 
 function TabBarIcon({ fontFamily, name, color }) {
-  if (fontFamily === "MaterialCommunityIcons") {
-    return <MaterialCommunityIcons name={name} size={24} color={color} />;
-  } else if (fontFamily === "Ionicons") {
-    return <Ionicons name={name} size={24} color={color} />;
-  } else if (fontFamily === "SimpleLineIcons") {
-    return <SimpleLineIcons name={name} size={24} color={color} />;
-  }
+	if (fontFamily === 'MaterialCommunityIcons') {
+		return <MaterialCommunityIcons name={name} size={24} color={color} />;
+	} else if (fontFamily === 'Ionicons') {
+		return <Ionicons name={name} size={24} color={color} />;
+	} else if (fontFamily === 'SimpleLineIcons') {
+		return <SimpleLineIcons name={name} size={24} color={color} />;
+	}
 }
 
 export default function Navigation() {
-  return (
-    <NavigationContainer theme={THEME}>
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: colors.primary,
-        }}
-      >
-        <Tab.Screen
-          options={{
-            title: "Home",
-            tabBarIcon: ({ color }) => (
-              <TabBarIcon
-                fontFamily={"MaterialCommunityIcons"}
-                name="home"
-                color={color}
-              />
-            ),
-          }}
-          name="HomeTab"
-          component={HomeStackScreens}
-        />
-        <Tab.Screen
-          options={{
-            title: "Convertor",
-            tabBarIcon: ({ color }) => (
-              <TabBarIcon
-                fontFamily={"Ionicons"}
-                name="calculator"
-                color={color}
-              />
-            ),
-          }}
-          name="ConvertorTab"
-          component={ConvertorStackScreens}
-        />
+	return (
+		<NavigationContainer theme={THEME}>
+			<Tab.Navigator
+				initialRouteName='Home'
+				screenOptions={{
+					headerShown: false,
+					tabBarActiveTintColor: colors.primary,
+				}}>
+				<Tab.Screen
+					options={{
+						title: 'Home',
+						tabBarIcon: ({ color }) => (
+							<TabBarIcon fontFamily={'MaterialCommunityIcons'} name='home' color={color} />
+						),
+					}}
+					name='HomeTab'
+					component={HomeStackScreens}
+				/>
+				<Tab.Screen
+					options={{
+						title: 'Convertor',
+						tabBarIcon: ({ color }) => (
+							<TabBarIcon fontFamily={'Ionicons'} name='calculator' color={color} />
+						),
+					}}
+					name='ConvertorTab'
+					component={ConvertorStackScreens}
+				/>
 
-        <Tab.Screen
-          options={{
-            title: "Settings",
-            tabBarIcon: ({ color }) => (
-              <TabBarIcon
-                fontFamily={"Ionicons"}
-                name="settings"
-                color={color}
-              />
-            ),
-          }}
-          name="SettingsTab"
-          component={settingsStackScreens}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+				<Tab.Screen
+					options={{
+						title: 'Settings',
+						tabBarIcon: ({ color }) => (
+							<TabBarIcon fontFamily={'Ionicons'} name='settings' color={color} />
+						),
+					}}
+					name='SettingsTab'
+					component={settingsStackScreens}
+				/>
+			</Tab.Navigator>
+		</NavigationContainer>
+	);
 }
